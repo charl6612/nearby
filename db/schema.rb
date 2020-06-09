@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_124947) do
+ActiveRecord::Schema.define(version: 2020_06_09_082613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.string "macroname"
+    t.string "seoname"
+    t.string "place"
+    t.string "country"
+    t.string "categorie"
+    t.string "duration"
+    t.integer "nights"
+    t.string "activity"
+    t.string "texte"
+    t.string "backpack_content"
+    t.string "practical_info"
+    t.string "difficulty"
+    t.string "date_done"
+    t.string "weather"
+    t.string "child_proof"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +49,5 @@ ActiveRecord::Schema.define(version: 2019_10_15_124947) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "users"
 end
